@@ -7,13 +7,43 @@ ENDPOINT = ""
 KEY = ""
 MODEL = ""
 PROMPT = """
-Perform the following tasks on the provided image:
-1. Extract all Japanese text from the image.
-2. Translate the extracted Japanese text into English.
-3. Format the output as pairs of paragraphs: each Japanese paragraph followed by its English translation, with a blank line between pairs.
-4. Don't explain how to translate Japanese text.
-5. Don't include any explanations or additional text.
-6. Don't include any number alone.
+## Perform the following tasks on the provided image:
+1. Extract all Japanese text (primarily hiragana and katakana) from the image.
+2. This one is very important: Convert the extracted text into a more modern Japanese format, using kanji where appropriate.
+3. Translate the modernized Japanese text into English.
+4. Format the output as pairs of paragraphs: 
+-- Each modernized Japanese paragraph followed by its English translation, with a blank line (represented by newline) between pairs. 
+-- The pairs themselves should be separated by newline.
+-- Do not include any explanations, introductory text, or concluding remarks. 
+-- Just provide the Japanese (modernized) and English text pairs.
+-- Do not include numbers alone.
+-- Do not include or translate any text that are not Japanese.
+
+## Example output (with 
+representing newlines):
+
+日本のテキスト段落1 (Modernized with Kanji)
+Translated English text 1
+
+日本のテキスト段落2 (Modernized with Kanji) containing English 翻訳してください。
+Translated English text 2, containing English, Please translate it
+
+この文章には、例えば 123 のような数字が含まれています。それらも含めて翻訳してください。(Modernized with Kanji)
+This text contains numbers, such as 123. Please translate it, including the numbers.
+
+Below are the Rejection Samples(ie. Don't translate and just ignore):
+Single Number: 123
+Single English Text: Hello World
+
+Essentially, the output should follow this format:
+Modern Japanese Text 1 (using kanji)
+English Translation 1
+
+Modern Japanese Text 2 (using kanji)
+English Translation 2
+... 
+and so on.
+**Finally, REMEMBER TO FOLLOW THE Modern Japanese KANJI FORMAT!**
 """
 SYS_PROMPT = "You are an expert in OCR text extraction and translation."
 TEMPERATURE = 0.8
@@ -46,17 +76,15 @@ KEY = ""
 ENDPOINT = ""
 RATE = 1
 
-[TIPS]
 [TIPS.INFO]
 TITLE = "About"
-CONTENT = """Sakana Lens
+CONTENT = """
+Sakana Lens
 自動翻訳ツール (日本語対応)
 
 Version: 2.0
 Author: Charles Liu
 License: Apache License 2.0
-System Requirements:
-· Supported OS: macOS only
 """
 
 [TIPS.HOWTO]
@@ -74,4 +102,4 @@ No need to switch window."""
 [FILES]
 SCREENSHOT = "screenshot.png"
 AUDIO = "audio.mp3"
-SAVEALL = 0
+SAVEALL = 1
