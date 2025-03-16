@@ -199,13 +199,15 @@ function retrieveSettings() {
         spkKey: config.SPEECH.KEY,
         spkEndpoint: config.SPEECH.ENDPOINT,
         spkRate: config.SPEECH.RATE,
-        // ... add more settings as needed
+        // TIPS
         tipInfo: config.TIPS.INFO.CONTENT,
         tipHowto: config.TIPS.HOWTO.CONTENT,
         // Window Configuration
         winWidth: windowConfig.width,
         winHeight: windowConfig.height,
-        winPosition: windowConfig.position
+        winPosition: windowConfig.position,
+        // Files
+        saveAll: config.FILES.SAVEALL,
     };
 
     return settings;
@@ -232,6 +234,10 @@ function updateSettings(settings) {
     config.SPEECH.KEY = settings.spkKey;
     config.SPEECH.ENDPOINT = settings.spkEndpoint;
     config.SPEECH.RATE = parseFloat(settings.spkRate);
+    // Update FILES settings
+    config.FILES.SAVEALL = settings.saveAll;
+
+    // Save the updated configuration
     uitls.updateConfig(config);
 
     // Update Window Configuration
@@ -246,6 +252,12 @@ function updateSettings(settings) {
 }
 
 function handleShortcuts(type) {
+    // If streaming is already in progress, ignore this call
+    if (isStreaming) {
+        console.log("Streaming already in progress. Ignoring request.");
+        return; // Indicate the request was ignored
+    }
+    
     switch (type) {
         case SHORTCUT_CT:
             translateTopWindow();
@@ -352,7 +364,9 @@ async function translateSelectRegion(region) {
     selectedRegion = region;
     console.log('Selected Rectangle:', selectedRegion);
 
-    const imagePath = path.join(__dirname, '../screenshot.png');
+    // Get user file path
+    const duplicate = config.FILES.SAVEALL;
+    const imagePath = uitls.getUserDataFilePath("screenshot", "png", duplicate);
     await captureScreenRegion(selectedRegion.x, selectedRegion.y, selectedRegion.width, selectedRegion.height,
         imagePath, shifting = false);
     streamContent(imagePath);
@@ -431,30 +445,35 @@ function playTTS(text) {
     } else if (settings.spkLang.trim().toLowerCase() === 'jp') {
         text = uitls.extractJapanese(text);
     }
+    // Get user file path
+    const duplicate = config.FILES.SAVEALL;
+    const audioPath = uitls.getUserDataFilePath("audio", "mp3", duplicate);
+    console.log("TTS audio path: ", audioPath);
+
     // Play text using different model
     if (settings.spkMode.trim().toLowerCase() === 'kokoro') {
-        kokoroPlay(settings, text);
+        kokoroPlay(settings, text, audioPath);
     } else if (settings.spkMode.trim().toLowerCase() === 'sambert') {
-        sambertPlay(settings, text);
+        sambertPlay(settings, text, audioPath);
     } else { // None, don't play
         //console.log("No tts model selected");
     }
 }
 
-function kokoroPlay(settings, text) {
+function kokoroPlay(settings, text, filePath) {
     console.log("kokoro tts start");
-    kokoro_generate_speech(settings, text).then((filePath) => {
-        console.log('kokoro play at: ', filePath);
-        playAudio(filePath);
+    kokoro_generate_speech(settings, text, filePath).then((outputFilePath) => {
+        //console.log('kokoro play at: ', outputFilePath);
+        playAudio(outputFilePath);
     });
 
 }
 
-function sambertPlay(settings, text) {
+function sambertPlay(settings, text, filePath) {
     console.log("sambert tts start");
-    sambert_generate_speech(settings, text).then((filePath) => {
-        console.log("sambert play at: ", filePath);
-        playAudio(filePath);
+    sambert_generate_speech(settings, text, filePath).then((outputFilePath) => {
+        //console.log("sambert play at: ", outputFilePath);
+        playAudio(outputFilePath);
     }).catch(err => { throw new Error("sambert play failed:", err) });
 }
 

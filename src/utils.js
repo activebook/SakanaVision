@@ -19,6 +19,34 @@ function setAppUserDataDir(dir) {
     appUserDataDir = dir;
 }
 
+/**
+ * Generate a unique filename with a timestamp under the app's user data directory
+ * @param {string} prefix - Prefix for the filename
+ * @param {string} suffix - Suffix for the filename
+ * @returns {string} Generated filename
+ */
+function getUserDataFilePath(prefix = 'random', suffix = '.tmp', duplicate = false) {
+    if (!appUserDataDir) {
+        throw new Error('App user data directory not set');
+    }
+    if (duplicate) {
+        const now = new Date();
+
+        // Format: YYMMDD-HHMMSS
+        const year = now.getFullYear().toString().slice(-2); // last 2 digits of year
+        const month = (now.getMonth() + 1).toString().padStart(2, '0'); // months are 0-indexed
+        const day = now.getDate().toString().padStart(2, '0');
+        const hours = now.getHours().toString().padStart(2, '0');
+        const minutes = now.getMinutes().toString().padStart(2, '0');
+        const seconds = now.getSeconds().toString().padStart(2, '0');
+    
+        const timestamp = `${year}${month}${day}-${hours}${minutes}${seconds}`;
+        return path.join(appUserDataDir, `${prefix}_${timestamp}.${suffix}`);    
+    } else {
+        return path.join(appUserDataDir, `${prefix}.${suffix}`);
+    }
+}
+
 function generateFilename(prefix = 'random', suffix = '.tmp') {
     const now = new Date();
 
@@ -100,6 +128,7 @@ module.exports = {
     sleep,
     getAppUserDataDir,
     setAppUserDataDir,
+    getUserDataFilePath,
     generateFilename,
     loadConfig,
     updateConfig,

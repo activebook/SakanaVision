@@ -71,5 +71,7 @@ subsequent [Ctrl+T] presses will only translate that region.
 
 No need to switch window."""
 
-[DEBUG]
+[FILES]
 SCREENSHOT = "screenshot.png"
+AUDIO = "audio.mp3"
+SAVEALL = 0

@@ -2,7 +2,7 @@
 const fs = require('fs');
 const path = require('path');
 
-async function kokoro_generate_speech(settings, text) {    
+async function kokoro_generate_speech(settings, text, filePath) {    
     const body = {
         "Text": text,
         "VoiceId": settings.spkModel,
@@ -31,7 +31,6 @@ async function kokoro_generate_speech(settings, text) {
         const buffer = Buffer.from(arrayBuffer);
 
         // Save to file
-        const filePath = path.join(__dirname, '../output.mp3');
         fs.writeFileSync(filePath, buffer);
         //console.log('MP3 file saved successfully! :', filePath);
         return filePath;

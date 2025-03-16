@@ -47,7 +47,7 @@
     "ws": "^8.18.1"
   },
   "build": {
-    "asar": false,
+    "asar": true,
     "appId": "com.activebook.sakana-vision",
     "asarUnpack": [],
     "files": [
@@ -64,7 +64,8 @@
       "!.gitattributes",
       "!.gitignore",
       "!screenshots/**/*",
-      "!**/*.{mp3,wav}"
+      "!**/*.{mp3}",
+      "!**/*.{wav}"
     ],
     "extraResources": [
       {

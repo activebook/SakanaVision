@@ -3,7 +3,9 @@ const { setupIPC, handleShortcuts, retrieveSettings, updateSettings } = require(
 const { registerShortcuts, unregisterShortcuts, SHORTCUT_CQ } = require('./shortcuts');
 const packageJson = require('../package.json');
 const path = require('path');
+const fs = require('fs/promises');
 const { slideInWindow } = require('./screen-utils');
+const { setAppUserDataDir } = require('./utils');
 const Store = require('electron-store').default;
 
 let store = null;
@@ -41,6 +43,22 @@ function initializeApp() {
     nativeTheme.themeSource = savedTheme;
 
     // Other initializations...
+    prepareUserDataDir();
+}
+
+/**
+ * On macOS: ~/Library/Application Support/[Your App Name]
+ * On Windows: %APPDATA%[Your App Name]
+ * On Linux: ~/.config/[Your App Name]
+ */
+function prepareUserDataDir() {
+    // Get user data directory (safe for read/write operations)
+    const userDataPath = app.getPath('userData');
+    const savedPath = path.join(userDataPath, 'Saved');
+
+    // Create directory if it doesn't exist
+    fs.mkdir(savedPath, { recursive: true });
+    setAppUserDataDir(savedPath);
 }
 
 const createMainWindow = () => {

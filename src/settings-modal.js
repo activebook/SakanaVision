@@ -50,6 +50,8 @@ function setupEventListeners() {
         document.getElementById('window-width').value = settings.winWidth;
         document.getElementById('window-height').value = settings.winHeight;
         document.getElementById('window-position').value = settings.winPosition;
+        // Save Mode
+        document.getElementById('save-mode-keep-all').checked = settings.saveAll;
 
         if (!modal.isVisible()) {
             modal.show();
@@ -83,7 +85,9 @@ function setupEventListeners() {
             // Add more settings as needed
             winWidth: parseInt(document.getElementById('window-width').value),
             winHeight: parseInt(document.getElementById('window-height').value),
-            winPosition: document.getElementById('window-position').value
+            winPosition: document.getElementById('window-position').value,
+            // Save Mode
+            saveAll: document.getElementById('save-mode-keep-all').checked,
         };
         //window.debug.log('Save button clicked:', settings);
         window.api.saveSettings(settings);

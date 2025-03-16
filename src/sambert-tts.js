@@ -16,8 +16,7 @@ let filePath = null;
  * @param {object} options - Optional TTS parameters
  * @returns {Promise<void>}
  */
-async function sambert_generate_speech(settings, text, options = {}) {
-    filePath = path.join(__dirname, "../output.mp3");
+async function sambert_generate_speech(settings, text, filePath, options = {}) {
     await prepareOutputFile(filePath);
 
     apiKey = settings.spkKey;
@@ -137,8 +136,8 @@ function handleWebSocketEvent(message, ws, fileStream, { resolve, reject }) {
         case 'task-finished':
             ws.close();
             fileStream.end(() => {
-                //console.log('TTS task completed successfully');
-                resolve(filePath);
+                //console.log('TTS task completed successfully');                
+                resolve(fileStream.path);
             });
             break;
         case 'task-failed':
