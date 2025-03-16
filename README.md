@@ -3,7 +3,7 @@
 
 ## Automatic Japanese-to-English Translation
 
-**SakanaLens** enables seamless translation of Japanese text to English in any active window. With a simple **Ctrl + T** shortcut for full-window translation, **Ctrl + Cmd + T** to select a specific area, or **Ctrl + Cmd + R** to lock a region for future translations (then using **Ctrl + T** to translate only that region), you can translate on-screen text without switching applications.
+**SakanaVision** enables seamless translation of Japanese text to English in any active window. With a simple **Ctrl + T** shortcut for full-window translation, **Ctrl + Cmd + T** to select a specific area, or **Ctrl + Cmd + R** to lock a region for future translations (then using **Ctrl + T** to translate only that region), you can translate on-screen text without switching applications.
 
 ---
 
@@ -19,30 +19,25 @@
 ---
 
 ## 🚀 Installation & Setup
-### **Step 1: Install Dependencies**
-```sh
-pip3 install -r requirements.txt
-```
+### **Step 1: Download and Extract **
+- Download the .7z file under the release page.
+
 ### **Step 2: Grant Accessibility Permissions**
-To function properly, SakanaLens requires accessibility permissions.
+To function properly, SakanaVision requires accessibility permissions.
 - Open **System Preferences** → **Privacy & Security** → **Accessibility**.
 - Add either the app or the terminal if running from the command line.
 
 ### **Step 3: Set Up API Key**
-- Rename `api_template.json5` to `api.json5`.
-- Edit `api.json5` and insert your API key.
+- Press **Cmd/Ctrl + .** or Click the left corner button to open the settings.
 
 ### **Step 4: Run the Application**
-```sh
-python3 sakana_lens.py
-```
 - Press **Ctrl + T** to trigger translation.
 
 ---
 
 ## ⚠️ Compatibility
 
-**SakanaLens is currently only supported on macOS.**
+**SakanaVision is currently only supported on macOS.**
 
 > **Note:**  
 > - This app **CANNOT** run on Windows.  
@@ -61,7 +56,11 @@ python3 sakana_lens.py
 ---
 
 ## 🟢 New UI | 🎉 Version 2.0 released 
-![SakanaLens New UI](showcase/UI.png)
+
+| Light Mode | Dark Mode | Settings |
+|------------|------------|------------|
+| ![SakanaVision New UI](showcase/UI_Light.png) | ![SakanaVision New UI](showcase/UI_Dark.png) | ![SakanaVision New UI](showcase/UI_Settings.png) |
+
 
 ---
 
@@ -74,26 +73,13 @@ Translate website text into English effortlessly. 🛜
 Experience manga translation with text-to-speech functionality. 💬
 [![Watch the video](https://img.youtube.com/vi/fpw661mpBYI/maxresdefault.jpg)](https://www.youtube.com/watch?v=fpw661mpBYI)
 
-### **:lock: Region Locker**
-Press **Ctrl + Cmd + R** to select or define a specific region for translation, the next **Ctrl + T** presses will only translate text within that locked region.
-![SakanaLens RegionLocker](showcase/case5.jpg)
-![SakanaLens RegionLocker](showcase/case5.1.jpg)
-
-### **🖥️ Additional Use Cases**
-#### **Web Translation Helper**
-![SakanaLens Case2](showcase/case2.jpg)
-
-#### **Reading Assistance**
-![SakanaLens Case3](showcase/case3.jpg)
-![SakanaLens Case6](showcase/case6.jpg)
-
 #### **Gaming Support**
-![SakanaLens Case4](showcase/case4.jpg)
+![SakanaLens Case4](showcase/case_gaming.jpg)
 
 ---
 
 ## 🛠️ Contribution & Support
-Feel free to contribute to this project! If you encounter issues, please open an [issue](https://github.com/Activebook/SakanaLens/issues) or submit a pull request.
+Feel free to contribute to this project! If you encounter issues, please open an [issue](https://github.com/Activebook/SakanaVision/issues) or submit a pull request.
 
 Happy translating! 🎉
 
@@ -101,13 +87,12 @@ Happy translating! 🎉
 
 ```json
 {
-  "name": "Sakana Lens",
+  "name": "Sakana Vision",
   "description": "自動翻訳ツール (日本語対応)",
   "version": "2.0",
   "author": "Charles Liu",
   "license": "Apache-2.0",
   "system_requirements": {
-    "os": "macOS only",
-    "python": "Python 3.9+"
+    "os": "macOS only"
   }
 }
