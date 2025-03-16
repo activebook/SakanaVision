@@ -12,8 +12,9 @@ const { captureScreenRegion, getScreenSize } = require('./screen-utils');
 const { kokoro_generate_speech } = require('./kokoro-tts');
 const { sambert_generate_speech } = require('./sambert-tts');
 const { playAudio } = require('./audio');
-const gw = require('get-windows');
+//const gw = require('get-windows');
 const { util } = require('undici');
+// Must use 8.0 version, 10.0 is a pure ESM, must import but it's not compatible to CommonJS which electron-forge use
 const Store = require('electron-store').default;
 
 
@@ -25,6 +26,17 @@ let selectedRegion = null;
 let previouslyFocusedApp = null;
 // Global flag to track if streaming is in progress
 let isStreaming = false;
+// Global window
+let gw;
+
+// In your initialization function
+async function initialize() {
+    // Import modules
+    gw = await import('get-windows');
+    
+    //console.log('get-windows module imported successfully.', gw);
+}
+
 // Store currently focused app before showing selector
 function captureCurrentFocus() {
     if (process.platform === 'darwin') {
@@ -119,6 +131,8 @@ function setupIPC(parentWindow) {
     mainWindow = parentWindow;
     sender = mainWindow.webContents;
     createOverlayWindow();
+    // Start get-windows
+    initialize().catch(err => console.error('Initialization failed:', err));
 
     // Handle IPC messages
     ipcMain.on('main-process-log', (event, ...args) => {
@@ -227,7 +241,7 @@ function updateSettings(settings) {
         height: settings.winHeight,
         position: settings.winPosition
     });
-    
+
     sender.send('complete-progress');
 }
 
@@ -422,6 +436,8 @@ function playTTS(text) {
         kokoroPlay(settings, text);
     } else if (settings.spkMode.trim().toLowerCase() === 'sambert') {
         sambertPlay(settings, text);
+    } else { // None, don't play
+        //console.log("No tts model selected");
     }
 }
 

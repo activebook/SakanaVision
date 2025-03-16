@@ -3,7 +3,7 @@
 
 ## Automatic Japanese-to-English Translation
 
-**SakanaVision** enables seamless translation of Japanese text to English in any active window. With a simple **Ctrl + T** shortcut for full-window translation, **Ctrl + Cmd + T** to select a specific area, or **Ctrl + Cmd + R** to lock a region for future translations (then using **Ctrl + T** to translate only that region), you can translate on-screen text without switching applications.
+**SakanaLens** enables seamless translation of Japanese text to English in any active window. With a simple **Ctrl + T** shortcut for full-window translation, **Ctrl + Cmd + T** to select a specific area, or **Ctrl + Cmd + R** to lock a region for future translations (then using **Ctrl + T** to translate only that region), you can translate on-screen text without switching applications.
 
 ---
 
