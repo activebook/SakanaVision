@@ -1,0 +1,75 @@
+# ----------------------------------------
+# Sakana Vision Configuration
+# ----------------------------------------
+[API]
+MODE = "openai"  # openai, google
+ENDPOINT = ""
+KEY = ""
+MODEL = ""
+PROMPT = """
+Perform the following tasks on the provided image:
+1. Extract all Japanese text from the image.
+2. Translate the extracted Japanese text into English.
+3. Format the output as pairs of paragraphs: each Japanese paragraph followed by its English translation, with a blank line between pairs.
+4. Don't explain how to translate Japanese text.
+5. Don't include any explanations or additional text.
+6. Don't include any number alone.
+"""
+SYS_PROMPT = "You are an expert in OCR text extraction and translation."
+TEMPERATURE = 0.8
+
+#-----------------------------------------------------------------------------
+# Kokoro Supported MODEL LIST
+# American Female: Autumn, Melody, Hannah, Emily, Ivy, Kaitlyn, Luna, Willow, Lauren, Sierra
+# American Male: Noah, Jasper, Caleb, Ronan, Ethan, Daniel, Zane
+# Chinese Female: Mei, Lian, Ting, Jing
+# Chinese Male: Wei, Jian, Hao, Sheng
+# Spanish Female: Lucía
+# Spanish Male: Mateo, Javier
+# French Female: Élodie
+# Hindi Female: Ananya, Priya
+# Hindi Male: Arjun, Rohan
+# Italian Female: Giulia
+# Italian Male: Luca
+# Portuguese Female: Camila
+# Portuguese Male: Thiago, Rafael
+#-----------------------------------------------------------------------------
+# About RATE
+#1.5: makes the audio 50% faster. (i.e., 60-second audio becomes 42 seconds)
+#-1.5: makes the audio 50% slower. (i.e., 60-second audio becomes 90 seconds.)
+#-----------------------------------------------------------------------------
+[SPEECH]
+MODE = "kokoro" #sambert, kokoro, none
+LANG = "en"
+MODEL = "af_bella"
+KEY = ""
+ENDPOINT = ""
+RATE = 1
+
+[TIPS]
+[TIPS.INFO]
+TITLE = "About"
+CONTENT = """Sakana Lens
+自動翻訳ツール (日本語対応)
+
+Version: 2.0
+Author: Charles Liu
+License: Apache License 2.0
+System Requirements:
+· Supported OS: macOS only
+"""
+
+[TIPS.HOWTO]
+TITLE = "How to use"
+CONTENT = """
+Press [Ctrl+T] in any Text Window to start the automatic translation task.
+
+Press [Ctrl+Cmd+T] to choose the specific area for automatic translation.
+
+Press [Ctrl+Cmd+R] to select and lock a specific region; 
+subsequent [Ctrl+T] presses will only translate that region.
+
+No need to switch window."""
+
+[DEBUG]
+SCREENSHOT = "screenshot.png"

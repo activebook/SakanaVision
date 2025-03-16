@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <link href="./styles-output.css" rel="stylesheet">
+</head>
+
+<body class="">
+    <!-- Remember add settings-modal class "hidden" -->
+    <div id="settings-modal" tabindex="-1" aria-hidden="true"
+        class=" overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative p-4 w-full max-w-md max-h-full">
+            <!-- Modal content -->
+            <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
+                <!-- Modal header -->
+                <!-- Header with title and close button -->
+                <div
+                    class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                        Settings
+                    </h3>
+                    <button id="closeBtn" type="button"
+                        class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                        data-modal-hide="settings-modal">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                        <span class="sr-only">Close</span>
+                    </button>
+                </div>
+
+                <!-- Modal body -->
+
+                <div class="border-b border-gray-200 dark:border-gray-700">
+                    <ul class="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400"
+                        role="tablist" data-tabs-toggle="#tabContent">
+                        <li class="me-2" role="presentation">
+                            <button
+                                class="inline-flex items-center justify-center p-4 text-blue-600 border-b-2 border-blue-600 rounded-t-lg active dark:text-blue-500 dark:border-blue-500 group"
+                                type="button" role="tab" data-tabs-target="#tabs-api" aria-selected="true">
+                                <svg class="w-4 h-4 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                    fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M10 3a7 7 0 0 0-7 7 7 7 0 0 0 7 7h9a5 5 0 0 0 5-5 5 5 0 0 0-5-5c0-.34-.02-.67-.07-1A7 7 0 0 0 10 3z" />
+                                </svg>API
+                            </button>
+                        </li>
+                        <li class="me-2" role="presentation">
+                            <button
+                                class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group"
+                                type="button" role="tab" data-tabs-target="#tabs-speech" aria-selected="false">
+                                <svg class="w-4 h-4 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                    fill="currentColor" viewBox="0 0 20 20">
+                                    <path
+                                        d="M10 2a3 3 0 0 0-3 3v4a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3zm0 13a6 6 0 0 1-5-2.68V13a1 1 0 0 1 2 0v.5a4 4 0 0 0 6 0V13a1 1 0 0 1 2 0v.32A6 6 0 0 1 10 15z" />
+                                    <path
+                                        d="M16 9.5a1 1 0 0 0-2 0 4 4 0 0 1-8 0 1 1 0 0 0-2 0 6 6 0 0 0 5 5.91V17a1 1 0 0 0 2 0v-1.59A6 6 0 0 0 16 9.5z" />
+                                </svg>SPEECH
+                            </button>
+                        </li>
+                        <li class="me-2" role="presentation">
+                            <button
+                                class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group"
+                                type="button" role="tab" data-tabs-target="#tabs-misc" aria-selected="false">
+                                <svg class="w-4 h-4 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                    fill="currentColor" viewBox="0 0 20 20">
+                                    <path
+                                        d="M18 7.5h-.423l-.452-1.09.3-.3a1.5 1.5 0 0 0 0-2.121L16.01 2.575a1.5 1.5 0 0 0-2.121 0l-.3.3-1.089-.452V2A1.5 1.5 0 0 0 11 .5H9A1.5 1.5 0 0 0 7.5 2v.423l-1.09.452-.3-.3a1.5 1.5 0 0 0-2.121 0L2.576 3.99a1.5 1.5 0 0 0 0 2.121l.3.3L2.423 7.5H2A1.5 1.5 0 0 0 .5 9v2A1.5 1.5 0 0 0 2 12.5h.423l.452 1.09-.3.3a1.5 1.5 0 0 0 0 2.121l1.415 1.413a1.5 1.5 0 0 0 2.121 0l.3-.3 1.09.452V18A1.5 1.5 0 0 0 9 19.5h2a1.5 1.5 0 0 0 1.5-1.5v-.423l1.09-.452.3.3a1.5 1.5 0 0 0 2.121 0l1.415-1.414a1.5 1.5 0 0 0 0-2.121l-.3-.3.452-1.09H18a1.5 1.5 0 0 0 1.5-1.5V9A1.5 1.5 0 0 0 18 7.5Zm-8 6a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Z" />
+                                </svg>MISC
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <div id="tabContent">
+                    <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="tabs-api" role="tabpanel"
+                        aria-labelledby="api-tab">
+                        <div id="apiSettingsContent" class="p-6 overflow-y-auto max-h-[calc(90vh-4rem)]">
+                            <form id="settingsForm" class="space-y-4">
+                                <!-- API Mode -->
+                                <div class="relative">
+                                    <label class="block text-sm font-medium text-gray-400 mb-1">API Mode</label>
+                                    <div class="relative">
+                                        <select id="apiMode"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                            <option value="openai">OpenAI API Compatible</option>
+                                            <option value="google">Google Compatible</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- API Endpoint -->
+                                <div class="relative">
+                                    <label class="block text-sm font-medium text-gray-400 mb-1">API Endpoint</label>
+                                    <div class="relative">
+                                        <input type="text" id="apiEndpoint"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                            placeholder="https://api.example.com">
+                                        <button type="button"
+                                            class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600"
+                                            onclick="document.getElementById('apiEndpoint').value = ''">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M6 18L18 6M6 6l12 12" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- API KEY -->
+                                <div class="relative">
+                                    <label class="block text-sm font-medium text-gray-400 mb-1">API Key</label>
+                                    <div class="relative">
+                                        <input type="password" id="apiKey"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
+                                        <!-- Eye toggle button -->
+                                        <button type="button"
+                                            class="absolute inset-y-0 right-8 pr-3 flex items-center text-gray-200 hover:text-red-200"
+                                            onclick="toggleAPIKeyVisibility()">
+                                            <!-- "Eye closed" icon (default) -->
+                                            <svg id="eyeIconClosedForAPIKey" xmlns="http://www.w3.org/2000/svg"
+                                                class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+                                            </svg>
+                                            <!-- "Eye open" icon (hidden initially) -->
+                                            <svg id="eyeIconOpenForAPIKey" xmlns="http://www.w3.org/2000/svg"
+                                                class="h-4 w-4 hidden" fill="none" viewBox="0 0 24 24"
+                                                stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                            </svg>
+                                        </button>
+                                        <button type="button"
+                                            class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600"
+                                            onclick="document.getElementById('apiKey').value = ''">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M6 18L18 6M6 6l12 12" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- API Model -->
+                                <div class="relative">
+                                    <label class="block text-sm font-medium text-gray-400 mb-1">API Model</label>
+                                    <div class="relative">
+                                        <input type="text" id="apiModel"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                            placeholder="gpt-3.5-turbo">
+                                        <button type="button"
+                                            class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600"
+                                            onclick="document.getElementById('apiModel').value = ''">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M6 18L18 6M6 6l12 12" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- API Prompt -->
+                                <div class="relative">
+                                    <label class="block text-sm font-medium text-gray-400 mb-1">API Prompt</label>
+                                    <div class="relative">
+                                        <textarea id="apiPrompt" rows="4"
+                                            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 resize-none overflow-auto no-scrollbar"
+                                            placeholder="Enter your prompt here"></textarea>
+                                        <button type="button"
+                                            class="absolute top-2 right-2 flex items-center text-gray-400 hover:text-gray-600"
+                                            onclick="document.getElementById('apiPrompt').value = ''">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M6 18L18 6M6 6l12 12" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- API System Prompt -->
+                                <div class="relative">
+                                    <label class="block text-sm font-medium text-gray-400 mb-1">API System
+                                        Prompt</label>
+                                    <div class="relative">
+                                        <textarea id="apiSysPrompt" rows="2"
+                                            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 resize-none overflow-auto no-scrollbar"
+                                            placeholder="Enter your system prompt here"></textarea>
+                                        <button type="button"
+                                            class="absolute top-2 right-2 flex items-center text-gray-400 hover:text-gray-600"
+                                            onclick="document.getElementById('apiSysPrompt').value = ''">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M6 18L18 6M6 6l12 12" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- API Temperature -->
+                                <div class="relative">
+                                    <label class="block text-sm font-medium text-gray-400 mb-1">API Temperature</label>
+                                    <div class="flex items-center space-x-4">
+                                        <input type="range" id="apiTemperatureSlider" min="0" max="2" step="0.1"
+                                            value="0.7"
+                                            class="w-10/12 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                                            oninput="updateAPITemperatureValue(this.value)">
+                                        <div class="relative w-16">
+                                            <input type="number" id="apiTemperatureValue" min="0" max="2" step="0.1"
+                                                value="0.7"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                                oninput="updateAPITemperatureSlider(this.value)">
+                                            <button type="button"
+                                                class="absolute inset-y-0 right-0 pr-1 flex items-center text-gray-400 hover:text-gray-600"
+                                                onclick="resetAPITemperature()">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none"
+                                                    viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="tabs-speech" role="tabpanel"
+                        aria-labelledby="speech-tab">
+                        <div id="speakerSettingsContent" class="p-6 overflow-y-auto max-h-[calc(90vh-4rem)]">
+                            <form id="speakerSettingsForm" class="space-y-4">
+                                <!-- Speaker Mode -->
+                                <div class="relative">
+                                    <label class="block text-sm font-medium text-gray-400 mb-1">Speaker Mode</label>
+                                    <div class="relative">
+                                        <select id="spkMode"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                            <option value="sambert">Sambert</option>
+                                            <option value="kokoro">Kokoro</option>
+                                            <option value="none">None</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Speaker Language -->
+                                <div class="relative">
+                                    <label class="block text-sm font-medium text-gray-400 mb-1">Speaker Language</label>
+                                    <div class="relative">
+                                        <select id="spkLang"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                            <option value="en">English</option>
+                                            <option value="cn">Chinese</option>
+                                            <option value="jp">Japanese</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Speaker Endpoint -->
+                                <div class="relative">
+                                    <label class="block text-sm font-medium text-gray-400 mb-1">Speaker Endpoint</label>
+                                    <div class="relative">
+                                        <input type="text" id="spkEndpoint"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                            placeholder="https://speaker.example.com">
+                                        <button type="button"
+                                            class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600"
+                                            onclick="document.getElementById('spkEndpoint').value = ''">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M6 18L18 6M6 6l12 12" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Speaker KEY -->
+                                <div class="relative">
+                                    <label class="block text-sm font-medium text-gray-400 mb-1">Speaker Key</label>
+                                    <div class="relative">
+                                        <input type="password" id="spkKey"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
+                                        <!-- Eye toggle button -->
+                                        <button type="button"
+                                            class="absolute inset-y-0 right-8 pr-3 flex items-center text-gray-200 hover:text-red-200"
+                                            onclick="toggleSpeakerKeyVisibility()">
+                                            <!-- "Eye closed" icon (default) -->
+                                            <svg id="eyeIconClosedForSpeakerKey" xmlns="http://www.w3.org/2000/svg"
+                                                class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+                                            </svg>
+                                            <!-- "Eye open" icon (hidden initially) -->
+                                            <svg id="eyeIconOpenForSpeakerKey" xmlns="http://www.w3.org/2000/svg"
+                                                class="h-4 w-4 hidden" fill="none" viewBox="0 0 24 24"
+                                                stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                            </svg>
+                                        </button>
+                                        <button type="button"
+                                            class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600"
+                                            onclick="document.getElementById('spkKey').value = ''">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M6 18L18 6M6 6l12 12" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Speaker Model -->
+                                <div class="relative">
+                                    <label class="block text-sm font-medium text-gray-400 mb-1">Speaker Model</label>
+                                    <div class="relative">
+                                        <input type="text" id="spkModel"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                            placeholder="model-name">
+                                        <button type="button"
+                                            class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600"
+                                            onclick="document.getElementById('spkModel').value = ''">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M6 18L18 6M6 6l12 12" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Speaker Rate -->
+                                <div class="relative">
+                                    <label class="block text-sm font-medium text-gray-400 mb-1">Speaker Rate</label>
+                                    <div class="flex items-center space-x-4">
+                                        <input type="range" id="spkRateSlider" min="1" max="2" step="0.05" value="1.0"
+                                            class="w-9/12 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                                            oninput="updateSpeakerRateValue(this.value)">
+                                        <div class="relative w-16">
+                                            <input type="number" id="spkRateValue" min="1" max="2" step="0.05"
+                                                value="1.0"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                                oninput="updateSpeakerRateSlider(this.value)">
+                                            <button type="button"
+                                                class="absolute inset-y-0 right-0 pr-1 flex items-center text-gray-400 hover:text-gray-600"
+                                                onclick="resetSpeakerRate()">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none"
+                                                    viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="tabs-misc" role="tabpanel"
+                        aria-labelledby="misc-tab">
+                        <h2 class="text-lg font-semibold">About</h2>
+                        <p id="tipInfo"></p>
+                        <p id="tipHowto"></p>
+                    </div>
+                </div>
+                <!-- Buttons -->
+                <div
+                    class="flex justify-end p-4 space-x-2 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+                    <button type="button" id="cancelBtn"
+                        class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+                        Cancel
+                    </button>
+                    <button type="button" id="saveBtn"
+                        class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        &nbsp;Save&nbsp;
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="../node_modules/flowbite/dist/flowbite.min.js"></script>
+</body>
+
+</html>

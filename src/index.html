@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sakana Vision</title>
+  <link href="./styles-output.css" rel="stylesheet">
+</head>
+
+<body class="m-0 p-0 overflow-hidden bg-stone-300 dark:bg-gray-700">
+
+  <!-- Main modal -->
+  <div id="modal-container"></div>
+
+  <!-- Chat response area -->
+  <!--
+  font-mono for a consistent width font (or use font-sans)
+  leading-relaxed for stable line height
+  -->
+  <div id="chatResponseArea" class="h-screen w-screen bg-stone-300 dark:bg-gray-700 p-4 overflow-auto font-sans leading-relaxed focus:outline-none" tabindex="0">
+    <!-- Chat responses will appear here -->
+  </div>
+
+  <!-- Loading indicator at bottom center -->
+  <div id="loadingIndicator" class="fixed bottom-6 left-1/2 transform -translate-x-1/2 hidden">
+    <div class="animate-spin rounded-full h-10 w-10 border-t-4 border-blue-500"></div>
+  </div>
+
+  <!-- Bottom left button with tooltip -->
+  <div class="fixed left-6 bottom-6 z-10">
+    <button id="infoButton" class="p-2 rounded-full hover:bg-stone-200 dark:hover:bg-gray-600 focus:outline-none">
+      <img src="../assets/info_mark.png" alt="Info" class="w-8 h-8">
+    </button>
+    <div id="infoTooltip"
+      class="absolute bottom-full left-0 px-4 py-2 bg-gray-800 text-white text-sm rounded shadow-lg mb-2 min-w-[200px] max-w-[400px] hidden">
+      <span class="tooltip-message whitespace-pre-line"></span>
+      <div class="absolute top-full left-4 border-4 border-transparent border-t-gray-800"></div>
+    </div>
+  </div>
+
+  <!-- Bottom right button with tooltip -->
+  <div class="fixed right-6 bottom-6 z-10">
+    <button id="questionButton" data-popover-target="popover-question" data-popover-placement="top"
+      class="p-2 rounded-full hover:bg-stone-200 dark:hover:bg-gray-600 focus:outline-none">
+      <img src="../assets/question_mark.png" alt="Question" class="w-8 h-8">
+    </button>
+    <div data-popover id="popover-question" role="tooltip"
+      class="absolute z-10 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-xs opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+      <div class="px-3 py-2 bg-gray-100 border-b border-gray-200 rounded-t-lg dark:border-gray-600 dark:bg-gray-700">
+        <h3 id="questionTooltipTitle" class="font-semibold text-gray-900 dark:text-white"></h3>
+      </div>
+      <div class="px-3 py-2">
+        <p id="questionTooltip" class="whitespace-pre-wrap"></p>
+      </div>
+      <div data-popper-arrow></div>
+    </div>
+    <!--
+    <div id="questionTooltip"
+      class="absolute bottom-full right-0 px-4 py-2 bg-gray-800 text-white text-sm rounded shadow-lg mb-2 min-w-[200px] max-w-[400px] hidden">
+      <span class="tooltip-message whitespace-pre-line"></span>
+      <div class="absolute top-full right-4 border-4 border-transparent border-t-gray-800"></div>
+    </div>
+    -->
+  </div>
+  <script src="./renderer.js"></script>
+  <script src="./tools-renderer.js"></script>
+  <script src="./settings-template.js"></script>
+  <script src="./settings-modal.js"></script>
+  <script src="../node_modules/flowbite/dist/flowbite.min.js"></script>
+</body>
+
+</html>

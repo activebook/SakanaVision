@@ -1,0 +1,37 @@
+<!-- overlay.html -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            position: fixed;
+            margin: 0;
+            height: 100vh;
+            width: 100vw;
+            background-color: rgba(0, 0, 0, 0);
+            /* semi-transparent */
+            z-index: 1000;
+            cursor: crosshair;
+        }
+
+        #canvas, #backCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0);   
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container" style="position: relative; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0);">
+        <canvas id="backCanvas" style="position: absolute; z-index: 1;"></canvas>
+        <canvas id="canvas" style="position: absolute; z-index: 2; display: none;"></canvas>
+    </div>
+    <script src="./overlay.js"></script>
+</body>
+
+</html>
