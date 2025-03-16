@@ -59,7 +59,7 @@ To function properly, SakanaVision requires accessibility permissions.
 
 | Light Mode | Dark Mode | Settings |
 |------------|------------|------------|
-| ![SakanaVision New UI](showcase/UI_Light.png) | ![SakanaVision New UI](showcase/UI_Dark.png) | ![SakanaVision New UI](showcase/UI_Settings.png) |
+| ![SakanaVision New UI](showcases/UI_Light.jpg) | ![SakanaVision New UI](showcases/UI_Dark.jpg) | ![SakanaVision New UI](showcases/UI_Settings.jpg) |
 
 
 ---
