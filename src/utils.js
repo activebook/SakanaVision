@@ -1,6 +1,8 @@
+const { app } = require('electron');
 const fs = require('fs/promises');
 const path = require('path');
 const toml = require('@iarna/toml');
+
 
 /**
  * Utility function to pause execution for a specified time
@@ -17,6 +19,19 @@ function getAppUserDataDir() {
 }
 function setAppUserDataDir(dir) {
     appUserDataDir = dir;
+}
+
+function getConfigPath() {
+    const isDev = process.env.NODE_ENV === 'development' || !app.isPackaged;
+    // During development
+    if (isDev) {
+        //console.log('Development mode');
+        return path.join(__dirname, '../config.toml');
+    }
+
+    //console.log('Production mode');
+    // In production (packaged app)
+    return path.join(process.resourcesPath, 'config.toml');
 }
 
 /**
@@ -39,9 +54,9 @@ function getUserDataFilePath(prefix = 'random', suffix = '.tmp', duplicate = fal
         const hours = now.getHours().toString().padStart(2, '0');
         const minutes = now.getMinutes().toString().padStart(2, '0');
         const seconds = now.getSeconds().toString().padStart(2, '0');
-    
+
         const timestamp = `${year}${month}${day}-${hours}${minutes}${seconds}`;
-        return path.join(appUserDataDir, `${prefix}_${timestamp}.${suffix}`);    
+        return path.join(appUserDataDir, `${prefix}_${timestamp}.${suffix}`);
     } else {
         return path.join(appUserDataDir, `${prefix}.${suffix}`);
     }
@@ -65,7 +80,7 @@ function generateFilename(prefix = 'random', suffix = '.tmp') {
 async function loadConfig() {
     try {
         // Load base config
-        const configPath = path.join(__dirname, '../config.toml');
+        const configPath = getConfigPath();
         const configFile = await fs.readFile(configPath, 'utf8');
         const config = toml.parse(configFile);
         return config;
@@ -79,7 +94,7 @@ async function updateConfig(config) {
     try {
         // Convert back to TOML format
         const updatedToml = toml.stringify(config);
-        const configPath = path.join(__dirname, '../config.toml');
+        const configPath = getConfigPath();
         // Write the updated content back to the file
         await fs.writeFile(configPath, updatedToml, 'utf8');
         return config;

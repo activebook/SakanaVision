@@ -49,7 +49,7 @@
   "build": {
     "asar": true,
     "appId": "com.activebook.sakana-vision",
-    "asarUnpack": [],
+    "asarUnpack": [  ],
     "files": [
       "**/*",
       "!**/node_modules/*/{CHANGELOG.md,README.md,README,readme.md,readme}",
@@ -68,10 +68,8 @@
       "!**/*.{wav}"
     ],
     "extraResources": [
-      {
-        "from": "assets",
-        "to": "assets"
-      }
+      { "from": "assets", "to": "assets" },
+      { "from": "config.toml", "to": "config.toml" }
     ],
     "mac": {
       "target": "dir",
