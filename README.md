@@ -74,7 +74,7 @@ Experience manga translation with text-to-speech functionality. 💬
 [![Watch the video](https://img.youtube.com/vi/fpw661mpBYI/maxresdefault.jpg)](https://www.youtube.com/watch?v=fpw661mpBYI)
 
 #### **Gaming Support**
-![SakanaLens Case4](showcase/case_gaming.jpg)
+![SakanaLens Case4](showcases/case_gaming.jpg)
 
 ---
 
